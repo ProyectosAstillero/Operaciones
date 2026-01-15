@@ -117,6 +117,9 @@ def main() -> None:
     c3.metric("RE", f"{re_count:,}")
 
     display_df = filtered.drop(columns=["_estado"], errors="ignore")
+    if supervisor_col is not None:
+        display_df = display_df.drop(columns=[supervisor_col], errors="ignore")
+    display_df = display_df.drop(columns=["AC", "RE"], errors="ignore")
     cols = list(display_df.columns)
     cols_to_hide = []
     if len(cols) >= 2:
